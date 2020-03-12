@@ -43,7 +43,8 @@
                 let token = result.credential.accessToken;
             }
             let userInfo = result.user
-            console.log('userInfo',userInfo)
+            document.getElementById('output').innerHTML = userInfo.email
+            console.log('userInfo',userInfo.email)
             }).catch(function(error) {
             // Handle Errors here.
                 console.error(error)
@@ -62,5 +63,6 @@
         }
   </script>
   <div onclick="signIn()">click me</div>
+  <div id="output"></div>
 </body>
 </html>
