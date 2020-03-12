@@ -41,10 +41,13 @@
     firebase.auth().getRedirectResult().then(result => {
             if(result.credential){
                 let token = result.credential.accessToken;
+                let userInfo = result.user
+                document.getElementById('output').innerHTML = userInfo.email
+                console.log('userInfo',userInfo.email)
+
+            }else{
+                firebase.auth().signInWithRedirect(googleProvider)
             }
-            let userInfo = result.user
-            document.getElementById('output').innerHTML = userInfo.email
-            console.log('userInfo',userInfo.email)
             }).catch(function(error) {
             // Handle Errors here.
                 console.error(error)
@@ -57,12 +60,12 @@
                 // ...
             });
 
-    function signIn(){
-        firebase.auth().signInWithRedirect(googleProvider)
+    
+        
 
-        }
+        
   </script>
-  <div onclick="signIn()">click me</div>
+  <!-- <div onclick="signIn()">click me</div> -->
   <div id="output"></div>
 </body>
 </html>
