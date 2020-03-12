@@ -38,7 +38,7 @@
     
     googleProvider = new firebase.auth.GoogleAuthProvider();
     console.log('working html', googleProvider)
-    function singIn(){
+    function signIn(){
         firebase.auth().signInWithRedirect(googleProvider)
 
         firebase.auth().getRedirectResult().then(result => {
