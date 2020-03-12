@@ -38,28 +38,28 @@
     
     googleProvider = new firebase.auth.GoogleAuthProvider();
     console.log('working html', googleProvider)
-    function signIn(){
-        firebase.auth().signInWithRedirect(googleProvider).then(()=>{
+    firebase.auth().getRedirectResult().then(result => {
+            if(result.credential){
+                let token = result.credential.accessToken;
+            }
+            let userInfo = result.user
+            console.log('userInfo',userInfo)
+            }).catch(function(error) {
+            // Handle Errors here.
+                console.error(error)
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                // The email of the user's account used.
+                let email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                let credential = error.credential;
+                // ...
+            });
 
-            firebase.auth().getRedirectResult().then(result => {
-                if(result.credential){
-                    let token = result.credential.accessToken;
-                }
-                let userInfo = result.user
-                console.log('userInfo',userInfo)
-                }).catch(function(error) {
-                // Handle Errors here.
-                    console.error(error)
-                    let errorCode = error.code;
-                    let errorMessage = error.message;
-                    // The email of the user's account used.
-                    let email = error.email;
-                    // The firebase.auth.AuthCredential type that was used.
-                    let credential = error.credential;
-                    // ...
-                });
-        })
-    }
+    function signIn(){
+        firebase.auth().signInWithRedirect(googleProvider)
+
+        }
   </script>
   <div onclick="signIn()">click me</div>
 </body>
