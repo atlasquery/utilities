@@ -24,25 +24,16 @@
 //     }
     function startMeUp(){
         // let the addin know of window size changes
-        window.onresize = function(event) {
-            let outerHeight = window.outerHeight
-            let outerWidth = window.outerWidth
-
-            if (outerHeight===0){outerHeight=window.innerHeight+38}// 38 is the our best guess at the difference between the inner hight and the outer hieght on Mac
-            if (outerWidth===0){outerWidth=window.innerWidth+6}// 6 is the best guess at the differnce between inner width and outer width on Mac--which is the only platfor we expect this code to execute for
-            
-            Office.context.ui.messageParent(
-                'hello world'
-            );
-        };
-        // load the content in an iframe
-        document.querySelector('iframe').src=decodeURIComponent(window.location.search.substring(1))
+       
+        Office.context.ui.messageParent('hello world');
+       
+        
     }
     </script>
 
 </head>
 <body onload="startMeUp()">
-    UPDATE 2
+    UPDATE 3
 
 </body>
 </html>
