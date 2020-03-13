@@ -51,8 +51,8 @@
                 document.getElementById('output').innerHTML = userInfo.email
                 console.log('userInfo',userInfo.email)
                 //sending user info object to the add in
-                // const userInfoJson = JSON.stringify(userInfo)
-                Office.context.ui.messageParent('userInfoJson')
+                const userInfoJson = JSON.stringify(userInfo)
+                Office.context.ui.messageParent(userInfoJson)
             }else{
                 firebase.auth().signInWithRedirect(googleProvider)
             }
