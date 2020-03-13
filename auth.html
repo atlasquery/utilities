@@ -12,8 +12,8 @@
 
     <title>Document</title>
 </head>
-<body>
-    <h1>biff the ...</h1>
+<body onload='start()'>
+    <h1>update 1 ...</h1>
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -34,7 +34,8 @@
             console.log("out of  office")
         }
     })
-    window.onload = event=>{
+    function start(){
+        
 //         window.Office.context.ui.messageParent('hello world2 its bigger and better')
         window.onresize = function(event) {
             console.log('inside widow resixe')
