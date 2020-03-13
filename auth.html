@@ -13,7 +13,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>thisi si test</h1>
+    <h1>biff the ...</h1>
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -37,9 +37,18 @@
     window.onload = event=>{
 //         window.Office.context.ui.messageParent('hello world2 its bigger and better')
         window.onresize = function(event) {
+            let outerHeight = window.outerHeight
+            let outerWidth = window.outerWidth
+
+            if (outerHeight===0){outerHeight=window.innerHeight+38}// 38 is the our best guess at the difference between the inner hight and the outer hieght on Mac
+            if (outerWidth===0){outerWidth=window.innerWidth+6}// 6 is the best guess at the differnce between inner width and outer width on Mac--which is the only platfor we expect this code to execute for
             
-            Office.context.ui.messageParent('hello')
-            
+            Office.context.ui.messageParent(
+                JSON.stringify({
+                    height: (outerHeight / screen.height) * 100,
+                    width:  (outerWidth / screen.width) * 100
+                })
+            );
         };
     }
      
