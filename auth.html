@@ -1,44 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Office JavaScript API -->
-<!--     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script> -->
-    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
-    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/Office.js" type="text/javascript"></script>
-    <!-- <script src="firebaseConfig.js"></script> -->
-
-
-    <title>Document</title>
-</head>
-<body onload='start()'>
-    <h1>update 1 ...</h1>
-    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
-
-  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
-
-  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-  <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
-
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
+  <title>Addin Dialog</title>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
   <script>
     Office.onReady(plat => {
         if (plat && plat.platform) {
             //settings.setOfficePlatform(plat.info, plat.platform)
-            console.log("in office")
+            //console.log("in office")
         }else{
-            console.log("out of  office")
+            //console.log("out of  office")
         }
     })
-    function start(){
-        
-//         window.Office.context.ui.messageParent('hello world2 its bigger and better')
+
+
+    function handlechange(value){
+        if(value > ""){
+            //console.log("value",value)
+            var w=window.open(decodeURIComponent(window.location.search.substring(1)))
+            document.getElementById("opener").value=""
+        }
+        document.getElementById("opener").blur()
+    }
+    function startMeUp(){
+        // let the addin know of window size changes
         window.onresize = function(event) {
-            console.log('inside widow resixe')
             let outerHeight = window.outerHeight
             let outerWidth = window.outerWidth
 
@@ -52,55 +38,32 @@
                 })
             );
         };
+        // load the content in an iframe
+        document.querySelector('iframe').src=decodeURIComponent(window.location.search.substring(1))
     }
-     
-    // const config = {
-    //     apiKey: "AIzaSyA4aNSHB21tyEqWJA7LYHet658ZDcdV5rM",
-    //     authDomain: "this-is-junk.firebaseapp.com",
-    //     databaseURL: "https://this-is-junk.firebaseio.com",
-    //     projectId: "this-is-junk",
-    //     storageBucket: "this-is-junk.appspot.com",
-    //     messagingSenderId: "445385097267",
-    //     appId: "1:445385097267:web:ae648c332c3c1e0c666346",
-    //     measurementId: "G-7CN044RZBN"
-    // };
-
-    // // Initialize Firebase
-    // firebase.initializeApp(config);
-    
-    // googleProvider = new firebase.auth.GoogleAuthProvider();
-    // console.log('working html', googleProvider)
-    // firebase.auth().getRedirectResult().then(result => {
-    //         if(result.credential){
-    //             let token = result.credential.accessToken;
-    //             let userInfo = result.user
-                
-    //             document.getElementById('output').innerHTML = userInfo.email
-    //             console.log('userInfo',userInfo.email)
-    //             //sending user info object to the add in
-    //             const userInfoJson = JSON.stringify(userInfo)
-    //             Office.context.ui.messageParent(userInfoJson)
-    //         }else{
-    //             firebase.auth().signInWithRedirect(googleProvider)
-    //         }
-    //         }).catch(function(error) {
-    //         // Handle Errors here.
-    //             console.error(error)
-    //             let errorCode = error.code;
-    //             let errorMessage = error.message;
-    //             // The email of the user's account used.
-    //             let email = error.email;
-    //             // The firebase.auth.AuthCredential type that was used.
-    //             let credential = error.credential;
-    //             // ...
-    //         });
-
-    
-        
-
-        
-  </script>
-  <!-- <div onclick="signIn()">click me</div> -->
-  <div id="output"></div>
+    </script>
+<style>
+body{
+    margin:0;
+}
+  div.menu{
+margin-right:18px;
+z-index:100;
+text-align: right;
+}
+select{
+   border:0px;
+   outline:0px;
+   background-color: transparent;
+}
+iframe{
+z-index:-1
+}
+</style>
+</head>
+<body onload="startMeUp()">
+    helllllllooooo! world
+<div class="menu"><select id="opener" onchange="handlechange(this.value)"><option selected></option><option>Open in browser</option></select></div>
+    <iframe id="frame" src=""  style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"></iframe>
 </body>
 </html>
