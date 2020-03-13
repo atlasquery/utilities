@@ -26,8 +26,19 @@
   <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
   <script>
+    Office.onReady(plat => {
+        if (plat && plat.platform) {
+            //settings.setOfficePlatform(plat.info, plat.platform)
+            console.log("in office")
+        }else{
+            console.log("out of  office")
+        }
+    })
+    window.onload = event=>{
+        window.Office.context.ui.messageParent('hello world2 its bigger and better')
+    }
      
-      const config = {
+    const config = {
         apiKey: "AIzaSyA4aNSHB21tyEqWJA7LYHet658ZDcdV5rM",
         authDomain: "this-is-junk.firebaseapp.com",
         databaseURL: "https://this-is-junk.firebaseio.com",
