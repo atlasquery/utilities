@@ -12,8 +12,7 @@
             //console.log("out of  office")
         }
     })
-    function startMeUp(){
-        const config = {
+    const config = {
           apiKey: "AIzaSyA4aNSHB21tyEqWJA7LYHet658ZDcdV5rM",
           authDomain: "this-is-junk.firebaseapp.com",
           databaseURL: "https://this-is-junk.firebaseio.com",
@@ -22,8 +21,11 @@
           messagingSenderId: "445385097267",
           appId: "1:445385097267:web:ae648c332c3c1e0c666346",
           measurementId: "G-7CN044RZBN"
-        };
-
+    };
+    
+    
+    
+    function startMeUp(){ 
     // Initialize Firebase
     firebase.initializeApp(config);
     
@@ -38,7 +40,7 @@
                 console.log('userInfo',userInfo.email)
                 //sending user info object to the add in
                 const userInfoJson = JSON.stringify(userInfo)
-                Office.context.ui.messageParent(userInfoJson)
+                Office.context.ui.messageParent('userInfoJson')
             }else{
                 firebase.auth().signInWithRedirect(googleProvider)
             }
@@ -62,7 +64,7 @@
 
 </head>
 <body onload="startMeUp()">
-    UPDATE 3
+    UPDATE 4
 
 </body>
 </html>
