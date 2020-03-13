@@ -32,10 +32,7 @@
             if (outerWidth===0){outerWidth=window.innerWidth+6}// 6 is the best guess at the differnce between inner width and outer width on Mac--which is the only platfor we expect this code to execute for
             
             Office.context.ui.messageParent(
-                JSON.stringify({
-                    height: (outerHeight / screen.height) * 100,
-                    width:  (outerWidth / screen.width) * 100
-                })
+                'hello world'
             );
         };
         // load the content in an iframe
@@ -45,7 +42,7 @@
 
 </head>
 <body onload="startMeUp()">
-    helllllllooooo! world
+    UPDATE 2
 
 </body>
 </html>
