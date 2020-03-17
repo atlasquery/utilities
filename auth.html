@@ -43,20 +43,29 @@
     
     googleProvider = new firebase.auth.GoogleAuthProvider();
     console.log('working html', googleProvider)
-    firebase.auth().getRedirectResult().then(result => {
-            if(result.credential){
-                let token = result.credential.accessToken;
-                let userInfo = result.user
+    // firebase.auth().getRedirectResult().then(result => {
+    //         if(result.credential){
+    //             let token = result.credential.accessToken;
+    //             let userInfo = result.user
                 
-                document.getElementById('output').innerHTML = userInfo.email
-                console.log('userInfo',userInfo.email)
-                //sending user info object to the add in
-                const userInfoJson = JSON.stringify(userInfo)
-                Office.context.ui.messageParent(userInfoJson)
-            }else{
-                firebase.auth().signInWithRedirect(googleProvider)
-            }
-            }).catch(function(error) {
+    //             document.getElementById('output').innerHTML = userInfo.email
+    //             console.log('userInfo',userInfo.email)
+    //             //sending user info object to the add in
+    //             const userInfoJson = JSON.stringify(userInfo)
+    //             Office.context.ui.messageParent(userInfoJson)
+    //         }else{
+    //             firebase.auth().signInWithRedirect(googleProvider)
+    //         }
+    //         }
+    firebase.auth().signInWithRedirect(googleProvider)
+    firebase.auth().onAuthStateChanged(user =>{
+        if(user){
+            console.log('we have a user', user)
+        }else{
+            console.log('we have not a user')
+        }
+    }
+                ).catch(function(error) {
             // Handle Errors here.
                 console.error(error)
                 let errorCode = error.code;
