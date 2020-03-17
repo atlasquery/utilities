@@ -57,12 +57,13 @@
     //             firebase.auth().signInWithRedirect(googleProvider)
     //         }
     //         }
-    firebase.auth().signInWithRedirect(googleProvider)
+    
     firebase.auth().onAuthStateChanged(user =>{
         if(user){
             console.log('we have a user', user)
         }else{
             console.log('we have not a user')
+            firebase.auth().signInWithRedirect(googleProvider)
         }
     }
                 ).catch(function(error) {
