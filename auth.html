@@ -58,15 +58,15 @@
         //         }
         //         }
         
-        firebase.auth().onAuthStateChanged(user =>{
-            if(user){
-                console.log('we have a user', user)
-            }else{
-                console.log('we have not a user')
-                firebase.auth().signInWithRedirect(googleProvider)
-            }
-        }
-                    )
+//         firebase.auth().onAuthStateChanged(user =>{
+//             if(user){
+//                 console.log('we have a user', user)
+//             }else{
+//                 console.log('we have not a user')
+//                 firebase.auth().signInWithRedirect(googleProvider)
+//             }
+//         }
+//                     )
                 //     .catch(function(error) {
                 // // Handle Errors here.
                 //     console.error(error)
@@ -91,7 +91,7 @@
 
 </head>
 <body onload="startMeUp()">
-    UPDATE 8
+    UPDATE 9
     <div id="output"></div>
     <button onclick="signOut()">sign out</button>
 </body>
