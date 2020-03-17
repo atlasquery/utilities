@@ -81,13 +81,18 @@
 
         //   Office.context.ui.messageParent('hello world');
     }
+    function signOut(){
+        console.log('click')
+        firebase.auth().signOut()
+    }
     
     
     </script>
 
 </head>
 <body onload="startMeUp()">
-    UPDATE 6
+    UPDATE 7
     <div id="output"></div>
+    <button onclick="signOut()">sign out</button>
 </body>
 </html>
