@@ -15,14 +15,14 @@
   <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
   <script>
-//     Office.onReady(plat => {
-//         if (plat && plat.platform) {
-//             //settings.setOfficePlatform(plat.info, plat.platform)
-//             //console.log("in office")
-//         }else{
-//             //console.log("out of  office")
-//         }
-//     })
+    Office.onReady(plat => {
+        if (plat && plat.platform) {
+            //settings.setOfficePlatform(plat.info, plat.platform)
+            //console.log("in office")
+        }else{
+            //console.log("out of  office")
+        }
+    })
     
     
     
@@ -38,52 +38,37 @@
           measurementId: "G-7CN044RZBN"
     };
 
-        // Initialize Firebase
-        firebase.initializeApp(config);
-        
-        googleProvider = new firebase.auth.GoogleAuthProvider();
-        console.log('working html', googleProvider)
-        // firebase.auth().getRedirectResult().then(result => {
-        //         if(result.credential){
-        //             let token = result.credential.accessToken;
-        //             let userInfo = result.user
-                    
-        //             document.getElementById('output').innerHTML = userInfo.email
-        //             console.log('userInfo',userInfo.email)
-        //             //sending user info object to the add in
-        //             const userInfoJson = JSON.stringify(userInfo)
-        //             Office.context.ui.messageParent(userInfoJson)
-        //         }else{
-        //             firebase.auth().signInWithRedirect(googleProvider)
-        //         }
-        //         }
-        
-//         firebase.auth().onAuthStateChanged(user =>{
-//             if(user){
-//                 console.log('we have a user', user)
-//             }else{
-//                 console.log('we have not a user')
-//                 firebase.auth().signInWithRedirect(googleProvider)
-//             }
-//         }
-//                     )
-                //     .catch(function(error) {
-                // // Handle Errors here.
-                //     console.error(error)
-                //     let errorCode = error.code;
-                //     let errorMessage = error.message;
-                //     // The email of the user's account used.
-                //     let email = error.email;
-                //     // The firebase.auth.AuthCredential type that was used.
-                //     let credential = error.credential;
-                //     // ...
-                // });
+    // Initialize Firebase
+    firebase.initializeApp(config);
+    
+    googleProvider = new firebase.auth.GoogleAuthProvider();
+    console.log('working html', googleProvider)
+    firebase.auth().getRedirectResult().then(result => {
+            if(result.credential){
+                let token = result.credential.accessToken;
+                let userInfo = result.user
+                
+                document.getElementById('output').innerHTML = userInfo.email
+                console.log('userInfo',userInfo.email)
+                //sending user info object to the add in
+                const userInfoJson = JSON.stringify(userInfo)
+                Office.context.ui.messageParent(userInfoJson)
+            }else{
+                firebase.auth().signInWithRedirect(googleProvider)
+            }
+            }).catch(function(error) {
+            // Handle Errors here.
+                console.error(error)
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                // The email of the user's account used.
+                let email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                let credential = error.credential;
+                // ...
+            });
 
-        //   Office.context.ui.messageParent('hello world');
-    }
-    function signOut(){
-        console.log('click')
-        firebase.auth().signOut()
+    //   Office.context.ui.messageParent('hello world');
     }
     
     
@@ -91,8 +76,7 @@
 
 </head>
 <body onload="startMeUp()">
-    UPDATE 9
+    UPDATE 6
     <div id="output"></div>
-    <button onclick="signOut()">sign out</button>
 </body>
 </html>
