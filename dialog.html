@@ -32,18 +32,11 @@
         };
 
         // load the content in an iframe
-        document.getElementById('d2').innerHTML = 'd2'
         document.querySelector('iframe').src=decodeURIComponent(window.location.search.substring(1));
-        document.getElementById('d3').innerHTML = 'd3'
     }
     </script>
 </head>
 <body>
-    <!--<iframe src=""  style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"></iframe>-->
-    <div id="d1">1</div>
-    <div id="d2">2</div>
-    <div id="d3">3</div>
-    <div id="d4">4</div>
-    <div id="d5">5</div>
+    <iframe src=""  style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"></iframe>
 </body>
 </html>
