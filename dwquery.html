@@ -18,7 +18,6 @@
         window.onresize = function(event) {
             let outerHeight = window.outerHeight
             let outerWidth = window.outerWidth
-            alert(outerWidth)
             if (outerHeight===0){outerHeight=window.innerHeight+38}// 38 is the our best guess at the difference between the inner hight and the outer hieght on Mac
             if (outerWidth===0){outerWidth=window.innerWidth+6}// 6 is the best guess at the differnce between inner width and outer width on Mac--which is the only platfor we expect this code to execute for
 
@@ -48,7 +47,7 @@
     </script>
 </head>
 <body>
-   Hi
+   Ho
   <button type="button" onclick="f()">Click me!</button>
 </body>
 </html>
