@@ -4,6 +4,8 @@
   <title>Addin Dialog</title>
   <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
   <script>
+    var open_hieght=0
+    var open_width=0
     Office.onReady(plat => {
         if (plat && plat.platform) {
             //settings.setOfficePlatform(plat.info, plat.platform)
@@ -15,35 +17,51 @@
 
     window.onload = function(event) {
         // let the addin know of window size changes
+      open_height = get_height()
+      open_width = get_width()
+      
         window.onresize = function(event) {
-            let outerHeight = window.outerHeight
-            let outerWidth = window.outerWidth
-            if (outerHeight===0){outerHeight=window.innerHeight+38}// 38 is the our best guess at the difference between the inner hight and the outer hieght on Mac
-            if (outerWidth===0){outerWidth=window.innerWidth+6}// 6 is the best guess at the differnce between inner width and outer width on Mac--which is the only platfor we expect this code to execute for
-
             window.Office.context.ui.messageParent(
                 JSON.stringify({
-                    height: (outerHeight / window.screen.height) * 100,
-                    width:  (outerWidth / window.screen.width) * 100
+                    height: (get_height() / window.screen.height) * 100,
+                    width:  (get_width() / window.screen.width) * 100
                 })
             );
         };
 
     }
-    function f(){
-     console.log("at f")
-            let outerHeight = window.outerHeight
-            let outerWidth = window.outerWidth
-            if (outerHeight===0){outerHeight=window.innerHeight+38}// 38 is the our best guess at the difference between the inner hight and the outer hieght on Mac
-            if (outerWidth===0){outerWidth=window.innerWidth+6}// 6 is the best guess at the differnce between inner width and outer width on Mac--which is the only platfor we expect this code to execute for
-
-       window.Office.context.ui.messageParent(
-                JSON.stringify({
-                    height: (outerHeight / window.screen.height) * 100,
-                    width:  (outerWidth / window.screen.width) * 100
-                })
-            );
+    function get_height(){
+      let x = window.outerHeight
+      if(x===0){x=window.innerHeight+38}// 38 is the our best guess at the difference between the inner hight and the outer hieght on Mac
+      return x
     }
+    function get_width(){
+      let x = window.outerWidth
+      if(x===0){x=window.innerWidth+6}// 6 is the best guess at the differnce between inner width and outer width on Mac--which is the only platfor we expect this code to execute for
+      return x
+    }
+    function f(){
+      console.log ("open_height", open_height)
+      console.log ("open_width", open_width)
+      console.log ("param_height", getParameterByName('h'))
+      console.log ("param_width", getParameterByName('w'))
+      console.log ("current_height", get_height())
+      console.log ("current_width", get_width())
+      console.log ("new_param_height", (getParameterByName('h')*get_heigth())/open_height)
+      console.log ("new_param_width", (getParameterByName('w')*get_width())/open_width)
+      
+    }
+    
+    function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+    
     </script>
 </head>
 <body>
