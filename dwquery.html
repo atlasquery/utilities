@@ -23,8 +23,8 @@
         window.onresize = function(event) {
             window.Office.context.ui.messageParent(
                 JSON.stringify({
-                    height: (get_height() / window.screen.height) * 100,
-                    width:  (get_width() / window.screen.width) * 100
+                    height: (getParameterByName('h')*get_height())/open_height,
+                    width:  (getParameterByName('w')*get_width())/open_width)
                 })
             );
         };
@@ -65,7 +65,7 @@
     </script>
 </head>
 <body>
-   Hum
+   Fi
   <button type="button" onclick="f()">Click me!</button>
 </body>
 </html>
