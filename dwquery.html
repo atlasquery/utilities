@@ -28,7 +28,7 @@
                 })
             );
         };
-
+        //document.getElementById("f").src=decodeURIComponent(getParameterByName('u'));
     }
     function get_height(){
       let x = window.outerHeight
@@ -40,17 +40,7 @@
       if(x===0){x=window.innerWidth+6}// 6 is the best guess at the differnce between inner width and outer width on Mac--which is the only platfor we expect this code to execute for
       return x
     }
-    function f(){
-      console.log ("open_height", open_height)
-      console.log ("open_width", open_width)
-      console.log ("param_height", getParameterByName('h'))
-      console.log ("param_width", getParameterByName('w'))
-      console.log ("current_height", get_height())
-      console.log ("current_width", get_width())
-      console.log ("new_param_height", (getParameterByName('h')*get_height())/open_height)
-      console.log ("new_param_width", (getParameterByName('w')*get_width())/open_width)
-      
-    }
+    
     
     function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -65,7 +55,6 @@
     </script>
 </head>
 <body>
-   Fie
-  <button type="button" onclick="f()">Click me!</button>
+ <iframe id="f" src="https://data.world/embed/thegove/redcat/query?queryid=sample-0"  style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"></iframe>
 </body>
 </html>
